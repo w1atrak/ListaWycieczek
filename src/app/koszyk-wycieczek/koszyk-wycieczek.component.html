@@ -1,0 +1,19 @@
+
+<section class="all">
+    <div  *ngFor="let wycieczka of wycieczki; let lastitem = last">
+        <div class="card" *ngIf="wycieczka.reserved" >
+           <b> {{wycieczka.name}} </b>
+            {{wycieczka.country}} <br>
+            <b> × {{wycieczka.reserved}} </b>
+        </div>
+        
+        <div *ngIf="lastitem"> {{handleChanges()}} </div>
+    </div>
+</section>
+
+
+<div id="cart">
+    Podsumowanie <br>
+    wycieczek: {{sumaWycieczek}} <br>
+    koszt: {{sumaKosztu | currency: 'USD'}} 
+</div>

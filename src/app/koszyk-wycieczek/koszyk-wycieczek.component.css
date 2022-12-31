@@ -1,0 +1,18 @@
+.all{
+    overflow: scroll;
+    display: flex;
+
+    max-width: 20vw;
+    margin-right: 20px;
+}
+.card{
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 3px;
+    padding: 2px;
+    width: fit-content;
+}
+
+#cart{
+    padding: 5px;
+}

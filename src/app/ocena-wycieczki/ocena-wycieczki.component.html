@@ -1,0 +1,10 @@
+
+<button *ngIf="!show" (click)="click()">Oceń wycieczkę!</button>
+<select *ngIf="show" [(ngModel)]="review" (ngModelChange)="onChoose()">
+    <option disabled selected ></option>
+    <option >1</option>
+    <option >2</option>
+    <option >3</option>
+    <option >4</option>
+    <option >5</option>
+</select>

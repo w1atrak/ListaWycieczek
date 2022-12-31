@@ -1,0 +1,135 @@
+{
+    "1":
+        {
+            "name" : "Camping",
+            "country" :  "Romania",
+            "startDate":  "2020-06-01",
+            "endDate":  "2020-06-10",
+            "price" :  100,
+            "currency": "RON" ,
+            "maxPeople" :  10,
+            "reviews" : [1],
+            "description" : "It is a very nice camping in the mountains. You can go hiking, fishing, swimming, etc.",
+            "image" : "https://www.booktoursromania.com/wp-content/uploads/Fagaras-mountanis.jpg" 
+        }
+    ,
+    "2":
+    {
+        "name" :  "Beach camping",
+            "country" :   "France",
+            "startDate":  "2020-06-03",
+            "endDate":  "2020-06-15",
+            "price" :  200,
+            "currency": "EUR" ,
+            "maxPeople" :  5,
+            "reviews" : [2],
+            "description" :  "It is a very nice camping on the beach. You can go swimming, etc.",
+            "image" : "https://www.themediterraneantraveller.com/wp-content/uploads/2018/03/palombaggia-beach-corsica-france.jpeg"
+
+    },
+    "3":
+    {
+        "name" :  "Disneyland",
+            "country" :   "USA",
+            "startDate":  "2020-06-01",
+            "endDate":  "2020-06-12",
+            "price" :  500,
+            "currency": "USD" ,
+            "maxPeople" :  2,
+            "reviews" : [3],
+            "description" :  "It is a very nice near Disneyland. You can go to Disneyland, etc.",
+            "image" :  "https://cdn1.parksmedia.wdprapps.disney.com/vision-dam/digital/hkdl-platform/hkdl-global-assets/characters/FFFF0397_ver1_LR-1x1.jpg?2021-09-03T07:11:53+00:00"
+    },
+    "4":
+    {
+        "name" :  "Lake camping",
+            "country" :   "Italy",
+            "startDate":  "2020-05-13",
+            "endDate":  "2020-05-20",
+            "price" :  300,
+            "currency": "EUR" ,
+            "maxPeople" :  4,
+            "reviews" : [4],
+            "description" :  "It is a very nice camping near a lake. You can go swimming, fishing, etc.",
+            "image" : "https://italybest.com/wp-content/uploads/2021/03/Italy-best-3.png"
+    },
+    "5":
+    {
+        "name" : "Pizza and pasta" ,
+            "country" :   "Italy",
+            "startDate":  "2020-05-13",
+            "endDate":  "2020-05-28",
+            "price" :  400,
+            "currency": "EUR" ,
+            "maxPeople" :  22,
+            "reviews" : [5],
+            "description" :  "Pizza and pasta workshops",
+            "image" :  "https://www.femalefoodie.com/wp-content/uploads/2019/09/naples-cover-image.png"
+    },
+    "6":
+    {
+        "name" : "France vacation",
+            "country" :   "France",
+            "startDate":  "2020-09-13",
+            "endDate":  "2020-09-28",
+            "price" :  450,
+            "currency": "EUR" ,
+            "maxPeople" :  2,
+            "reviews" : [1],
+            "description" :  "It is a very nice vacation in France. You can go to Paris, etc.",
+            "image" : "https://i.natgeofe.com/k/04665f4a-3f8d-4b62-8ca3-09ce7dfc5a20/france-eiffel-tower_4x3.jpg"
+    },
+    "7":
+    {
+        "name" :  "France vineyards",
+            "country" :   "France",
+            "startDate":  "2020-07-13",
+            "endDate":  "2020-07-28",
+            "price" :  350,
+            "currency": "EUR" ,
+            "maxPeople" : 14 ,
+            "reviews" : [2],
+            "description" : "Taste the best wines in France" ,
+            "image" : "https://www.telegraph.co.uk/content/dam/Travel/2018/February/france-wine-champagne-GETTY.jpg"
+    },
+    "8":
+    {
+        "name" :  "Romania the best",
+            "country" :   "Romania",
+            "startDate":  "2020-01-13",
+            "endDate":  "2020-01-28",
+            "price" :  250,
+            "currency": "RON" ,
+            "maxPeople" :  10,
+            "reviews" : [3],
+            "description" :  "It is a very nice vacation in Romania. You can go to the mountains, etc.",
+            "image" : "https://www.dustercooltravels.com/wp-content/uploads/2020/05/cheia1.jpg"
+    },
+    "9":
+    {
+        "name" : "Poland vacation",
+            "country" :   "Poland",
+            "startDate":  "2020-06-13",
+            "endDate":  "2020-06-30",
+            "price" :  150,
+            "currency": "PLN" ,
+            "maxPeople" :  5,
+            "reviews" : [4],
+            "description" :  "It is a very nice vacation in Poland. You can go to the mountains, etc.",
+            "image" : "https://dag08uxs564ub.cloudfront.net/images/mountain-hut-in-polish-mountains.max-1280x768.jpg"
+    },
+    "10":
+    {
+        "name" : "Poland",
+            "country" :   "Poland",
+            "startDate":  "2020-12-13",
+            "endDate":   "2020-12-30",
+            "price" :  158,
+            "currency": "PLN" ,
+            "maxPeople" :  5,
+            "reviews" : [5],
+            "description" :  "It is a very nice vacation in Poland.",
+            "image" : "https://www.poland.travel/images/en-EN/unesco/KrakowWawel-540.jpg"
+    }
+
+}

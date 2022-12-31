@@ -1,0 +1,30 @@
+
+<p >Filtruj lokalizację</p>
+<div *ngFor="let country of countries">{{country}}
+    <input type="checkbox" checked (change)="changeCountry(country)">
+</div>
+
+
+
+<p>Filtruj cenę</p>
+<input type="range" min="{{minPrice}}" max="{{maxPrice}}" [(ngModel)]="filtered[1][0]" (change)="click()">
+{{filtered[1][0]}}
+<input type="range" min="{{minPrice}}" max="{{maxPrice}}" [(ngModel)]="filtered[1][1]" (change)="click()">
+{{filtered[1][1]}}
+
+
+
+<p>Filtruj datę</p>
+Podaj datę początkową
+<input type="date" min="{{minDate}}" value="{{minDate}}" max="{{maxDate}}" [(ngModel)]="filtered[2][0]" (change)="click()">
+Podaj datę końcową
+<input type="date" min="{{minDate}}" value="{{maxDate}}" max="{{maxDate}}" [(ngModel)]="filtered[2][1]" (change)="click()">
+
+<p>Filtruj ocenę</p>
+<div *ngFor="let ocena of reviews2">{{ocena}}
+    <input type="checkbox" checked (change)="changeReview(ocena)" >
+
+</div>
+
+
+

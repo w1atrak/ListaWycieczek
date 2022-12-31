@@ -1,0 +1,94 @@
+
+<div id="menu">
+
+    <div id="row">
+        <p [ngStyle]="{'background-color': reserved>=10 ? 'green' : 'red' }">Zarezerwowano: {{reserved}}</p>
+        <app-koszyk-wycieczek [wycieczki]="wycieczki" id="row"></app-koszyk-wycieczek>
+    </div>
+
+
+    <div class="border">
+        <b  (click)="addingClicked()">Dodaj wycieczke</b>
+        <form *ngIf="showAdding" [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+            <label>name:</label><input name="name" formControlName="name">
+            <label>country:</label><input name="country" formControlName="country">
+            <label>starting date:</label><input type="date" name="startDate" formControlName="startDate">
+            <label>ending date:</label><input type="date" name="endDate" formControlName="endDate">
+            <label>price:</label><input name="price" formControlName="price">
+            <label>currency:</label><input name="currency" formControlName="currency">
+            <label>max number of people:</label><input name="maxPeople" formControlName="maxPeople">
+            <label>description:</label><input name="description" formControlName="description">
+            <label>image link:</label><input  name="image" formControlName="image">
+            <button [disabled]="!modelForm.valid" type="submit">Add</button>
+        </form>
+
+        <div *ngFor="let error of formErrors | keyvalue">{{error.value}}</div>
+    </div>
+<br>
+
+<div class="border">
+<b (click)="setAttributes()"> Filtruj</b>
+<app-filtrowanie-wycieczek *ngIf="showFilters" [(filterValues)]="attributes" ></app-filtrowanie-wycieczek>
+</div>
+
+<br>
+
+
+</div>
+
+
+<main id="screen">
+    {{refresh()}}
+    <!-- <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)"> -->
+        <ng-container *ngFor="let item of wycieczki">
+
+        <ng-container *ngIf="!item.removed">
+
+            <section class="card" 
+            [ngClass]="{'expensive': item.price==minPrice , 'cheap' : item.price==maxPrice}"
+            [ngStyle]="{'background-color': getColor(item.reserved/(item.maxPeople+item.reserved)) } ">
+            
+            <div class="panel">
+                    <span (click)="remove(item)" class="material-symbols-outlined">
+                        delete
+                        </span>
+                <img src="{{item.image}}" alt="image not found">
+                <div class="tooltip">
+                    <span class="material-symbols-outlined">
+                        info
+                        </span>
+                    <div class="tooltiptext">
+                        {{item.description}}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <div>{{item.name | uppercase}}</div>
+                <div>{{item.country | uppercase}}</div>
+            </div>
+            
+            <div id="reservation">
+                <b>{{item.price | currency: item.currency }}</b>
+                <div *ngIf="item.maxPeople!=0" [ngClass]="{'blink' : item.maxPeople<=3}">{{item.maxPeople}}</div>
+                <div *ngIf="item.maxPeople==0">Brak miejsc</div>
+                <div class="buttons">
+                    <button (click)="addReservation(item)" [ngStyle]="{'display' : item.maxPeople+item.reserved==item.reserved ? 'none' : 'block'}" >+</button>
+                    
+                    <button (click)="removeReservation(item)" [disabled]="item.reserved==0 ? true : false"  >-</button>
+                </div>
+            </div>
+            <div id="info">
+                <div>{{item.startDate | date}}</div>
+                -
+                <div>{{item.endDate | date}}</div>
+            </div>
+            <div>
+                <div *ngIf="item.reviews.length>0">Ocena: {{ocena(item.reviews)}}</div>
+                <app-ocena-wycieczki [(reviews)]="item.reviews"></app-ocena-wycieczki>
+            </div>
+                
+        </section>
+</ng-container>
+</ng-container>
+</main>
