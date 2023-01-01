@@ -1,0 +1,23 @@
+main{
+    background-color: var(--lighterGrayColor);
+    height: 100vh;
+}
+
+footer{
+    background-color: var(--grayColor);
+    padding: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+
+}
+footer>div{
+    margin: 0 20px;
+}
+
+span>a{
+    text-decoration: none;
+    color: white;
+}
+
+

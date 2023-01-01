@@ -13,6 +13,12 @@ import { KoszykWycieczekComponent } from './koszyk-wycieczek/koszyk-wycieczek.co
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { AddTripComponent } from './add-trip/add-trip.component';
+import { CartComponent } from './cart/cart.component';
+import { HistoryComponent } from './history/history.component';
+import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +26,12 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     OcenaWycieczkiComponent,
     FiltrowanieWycieczekComponent,
     FilterPipe,
-    KoszykWycieczekComponent
+    KoszykWycieczekComponent,
+    HomeComponent,
+    AddTripComponent,
+    CartComponent,
+    HistoryComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +41,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
     // AppRoutingModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

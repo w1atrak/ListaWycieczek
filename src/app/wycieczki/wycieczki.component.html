@@ -1,29 +1,13 @@
+<div id="cart">
+    <app-koszyk-wycieczek [wycieczki]="wycieczki" id="row"></app-koszyk-wycieczek>
+</div>
 
 <div id="menu">
 
-    <div id="row">
         <p [ngStyle]="{'background-color': reserved>=10 ? 'green' : 'red' }">Zarezerwowano: {{reserved}}</p>
-        <app-koszyk-wycieczek [wycieczki]="wycieczki" id="row"></app-koszyk-wycieczek>
-    </div>
 
 
-    <div class="border">
-        <b  (click)="addingClicked()">Dodaj wycieczke</b>
-        <form *ngIf="showAdding" [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
-            <label>name:</label><input name="name" formControlName="name">
-            <label>country:</label><input name="country" formControlName="country">
-            <label>starting date:</label><input type="date" name="startDate" formControlName="startDate">
-            <label>ending date:</label><input type="date" name="endDate" formControlName="endDate">
-            <label>price:</label><input name="price" formControlName="price">
-            <label>currency:</label><input name="currency" formControlName="currency">
-            <label>max number of people:</label><input name="maxPeople" formControlName="maxPeople">
-            <label>description:</label><input name="description" formControlName="description">
-            <label>image link:</label><input  name="image" formControlName="image">
-            <button [disabled]="!modelForm.valid" type="submit">Add</button>
-        </form>
-
-        <div *ngFor="let error of formErrors | keyvalue">{{error.value}}</div>
-    </div>
+    
 <br>
 
 <div class="border">
@@ -39,8 +23,7 @@
 
 <main id="screen">
     {{refresh()}}
-    <!-- <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)"> -->
-        <ng-container *ngFor="let item of wycieczki">
+    <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)">
 
         <ng-container *ngIf="!item.removed">
 
