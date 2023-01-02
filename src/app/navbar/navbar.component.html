@@ -1,9 +1,14 @@
-<nav>
-    <div id="home" routerLink="/home">HOME</div>
-    <div routerLink="/trips">Shop trips!</div>
-    <div routerLink="/add-trip">Add trip</div>
-    <div routerLink="cart">Your cart</div>
-    <div routerLink="history">Your history</div>
-    <div id="profile">!Incoming trip!</div>
-    <div id="profile">Profile</div>
+<nav (window:resize)="onResize($event)">
+
+    <span (click)="changeHamburger()" class="material-symbols-outlined">
+        {{hamburgerText}}
+    </span>
+    
+    <div *ngIf="hamburgerMenu" id="home" routerLink="/home">HOME</div>
+    <div *ngIf="hamburgerMenu" routerLink="/trips">Shop trips!</div>
+    <div *ngIf="hamburgerMenu" routerLink="/add-trip">Add trip</div>
+    <div *ngIf="hamburgerMenu" routerLink="cart">Your cart</div>
+    <div *ngIf="hamburgerMenu" routerLink="history">Your history</div>
+    <div *ngIf="hamburgerMenu" id="profile">!Incoming trip!</div>
+    <div *ngIf="hamburgerMenu" id="profile">Profile</div>
 </nav>

@@ -16,3 +16,37 @@ nav>div{
 #home{
     margin-right: auto;
 }
+span{
+    display: none;
+}
+
+
+@media (max-width: 690px) {
+    nav{
+        padding-top: 45px ;
+        position: relative;
+        display: grid;
+        grid-template-columns: auto;
+
+        font-size: xx-large;
+    }
+    nav>div{
+        padding: 2%;
+        text-align: center;
+    }
+    span{
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+    }
+    #home, #profile{
+        padding: 0;
+        width: 100vw;
+    }
+    
+
+}

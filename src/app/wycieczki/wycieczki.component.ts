@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
 import { Observable } from '@firebase/util';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-wycieczki',
@@ -15,15 +16,7 @@ import { Observable } from '@firebase/util';
 
 export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
-  public daneRef: Observable<any>[];
-  dane: any
-  constructor(private formBuilder : FormBuilder, private db: AngularFireDatabase, private ref :ChangeDetectorRef) { 
-    const dane: AngularFireList<any> = db.list('wycieczki');
-    dane.valueChanges().subscribe(data => {
-      this.daneRef = data;
-      // this.wycieczki = this.daneRef as unknown as Wycieczka[];
-    });
-    this.dane = dane;
+  constructor(private formBuilder : FormBuilder, private dataService : DataServiceService,private ref :ChangeDetectorRef) { 
   }
 
   
@@ -54,23 +47,44 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
   }
 
   ngOnInit(): void {
+    console.log(this.dataService.getTrips(),"dane")
+    console.log("dane")
+
+    // fetch('../assets/wycieczki.json').then(res => res.json())
+    // .then(data => {
+    //   let wycieczki : Wycieczka[] = data
+    //   Object.keys(wycieczki).forEach((key : any) => {
+    //     wycieczki[key].reserved = 0
+    //     wycieczki[key].removed = false
+    //     wycieczki[key].hidden = false
+    //     this.wycieczki.push(wycieczki[key] as Wycieczka)
+
+    //     this.maxPrice = Math.max(wycieczki[key].price, this.maxPrice)
+    //     this.minPrice = Math.min(wycieczki[key].price, this.minPrice) 
+    //   })
+    // })
 
 
-    fetch('../assets/wycieczki.json').then(res => res.json())
-    .then(data => {
-      let wycieczki : Wycieczka[] = data
-      Object.keys(wycieczki).forEach((key : any) => {
-        wycieczki[key].reserved = 0
-        wycieczki[key].removed = false
-        wycieczki[key].hidden = false
-        this.wycieczki.push(wycieczki[key] as Wycieczka)
-
-        this.maxPrice = Math.max(wycieczki[key].price, this.maxPrice)
-        this.minPrice = Math.min(wycieczki[key].price, this.minPrice) 
-      })
+    this.dataService.getTrips().subscribe(trips => {
+      this.wycieczki = []
+      for(let trip of trips){
+        this.wycieczki.push({
+          name: trip.name,
+          country: trip.country,
+          startDate: trip.startDate,
+          endDate: trip.endDate,
+          price: trip.price,
+          maxPeople: trip.maxPeople,
+          currency: trip.currency,
+          description: trip.description,
+          reviews: trip.reviews,
+          image: trip.image,
+          reserved: 0,
+          hidden: false,
+          removed: false
+        } as Wycieczka)
+      }
     })
-
-    
   
   }
 
