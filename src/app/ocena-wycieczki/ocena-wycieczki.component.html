@@ -1,10 +1,9 @@
-
-<button *ngIf="!show" (click)="click()">Oceń wycieczkę!</button>
-<select *ngIf="show" [(ngModel)]="review" (ngModelChange)="onChoose()">
-    <option disabled selected ></option>
-    <option >1</option>
-    <option >2</option>
-    <option >3</option>
-    <option >4</option>
-    <option >5</option>
-</select>
+<main>
+    <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+        <label>Your nickname:</label><input name="nickname" formControlName="nickname">
+        <label>Trip: </label><input formControlName="trip">
+        <label>Place your review:</label><textarea type="time" name="review" formControlName="review"></textarea>
+        <label>Date of trip:</label> <input type="date" name="date" formControlName="date">
+        <button [disabled]="!modelForm.valid" type="submit">Add</button>
+    </form>
+</main>

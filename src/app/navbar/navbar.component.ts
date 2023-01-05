@@ -10,7 +10,9 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   hamburgerMenu: boolean = true;
+  smallScreen: boolean = true;
   hamburgerText: string = "menu";
+
 
 
   ngOnInit(): void {
@@ -22,10 +24,15 @@ export class NavbarComponent implements OnInit {
   }
 
   onResize(event: any) {
-    if (event.target.innerWidth > 690) {
-      this.hamburgerMenu = true;
-      this.hamburgerText = "close";
+    if (event.target.innerWidth > 730) {
+      this.hamburgerMenu = false;
+      this.changeHamburger();
     }
+    else{
+      this.hamburgerMenu = true;
+      this.changeHamburger();
+    }
+    this.smallScreen = event.target.innerWidth < 730;
   }
 
 }
