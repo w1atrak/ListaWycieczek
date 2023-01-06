@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { DataServiceService } from '../data-service.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 
 
@@ -10,7 +12,7 @@ import { Wycieczka } from '../wycieczki/wycieczki.component';
 })
 export class AddTripComponent implements OnInit {
 
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder, private dataService : DataServiceService) { }
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -105,6 +107,7 @@ export class AddTripComponent implements OnInit {
 
   onSubmit(form:any) {
     let wycieczka : Wycieczka= {
+      id: this.dataService.getId(),
       name: this.modelForm.value.name,
       country: this.modelForm.value.country,
       startDate: this.modelForm.value.startDate,
@@ -115,12 +118,11 @@ export class AddTripComponent implements OnInit {
       description: this.modelForm.value.description,
       image: this.modelForm.value.image,
       reserved: 0,
-      removed: false,
       hidden: false,
-      reviews: [] = []
+      rating: [] = []
 
     }
-    wycieczka.reviews.push([2])   /// domyślne
+    wycieczka.rating.push([2])   /// domyślne
 
     this.modelForm.reset()
 

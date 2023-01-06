@@ -1,0 +1,48 @@
+#content{
+    color: white;
+    width: 95%;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 6fr 2fr 1fr;
+
+
+    grid-template-areas: 
+    "back review"
+    "name review"
+    "images review"
+    "images reviews"
+    "description reviews"
+    "actions reviews"
+    ;
+}
+
+
+img{
+    grid-area: images;
+    width: 60%;
+    height: auto;
+}
+
+#review{
+    grid-area: review;
+    height: fit-content;
+}
+#reviews{
+    overflow: scroll;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+#back{
+    grid-area: back;
+}
+#info{
+    grid-area: name;
+}
+#description{
+    grid-area: description;
+}

@@ -1,5 +1,9 @@
 import { Component, OnInit,  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { DataServiceService } from '../data-service.service';
+import { Wycieczka } from '../wycieczki/wycieczki.component';
+
 
 @Component({
   selector: 'app-ocena-wycieczki',
@@ -9,9 +13,11 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 export class OcenaWycieczkiComponent implements OnInit {
 
 
-  constructor(private formBuilder : FormBuilder){
-    
-   }
+  constructor(private formBuilder : FormBuilder,    private route: ActivatedRoute, private dataService: DataServiceService) { }
+
+  wycieczka: Wycieczka[] = [];
+  reviews : any[] = [];
+  id: number = 0;
 
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
@@ -21,6 +27,37 @@ export class OcenaWycieczkiComponent implements OnInit {
       date: ['']
     })
     this.modelForm.valueChanges.subscribe(data => this.onControlValueChanged());
+    
+
+    this.route.params.subscribe(params => {
+      this.id = params['id'];
+      this.dataService.getTrips().subscribe(data => {
+        for(let wycieczka of data){
+          if(wycieczka.id == this.id){
+            this.wycieczka.push({
+              id: wycieczka.id,
+              name: wycieczka.name,
+              country: wycieczka.country,
+              startDate: wycieczka.startDate,
+              endDate: wycieczka.endDate,
+              price: wycieczka.price,
+              maxPeople: wycieczka.maxPeople,
+              currency: wycieczka.currency,
+              description: wycieczka.description,
+              rating: wycieczka.reviews,
+              image: wycieczka.image,
+              reserved: 0,
+              hidden: false,
+            } as Wycieczka)
+          }
+
+        }
+      
+      })});
+
+  
+  
+  
   }
 
 
@@ -77,7 +114,24 @@ export class OcenaWycieczkiComponent implements OnInit {
 
 
   onSubmit(modelForm : any) {
+    console.log(this.modelForm.value)
+    let review : Review = {
+      nickname: modelForm.value.nickname,
+      trip: modelForm.value.trip,
+      review: modelForm.value.review,
+      date: modelForm.value.date
+    }
+    this.reviews.push(review);
+    this.modelForm.reset();
+    console.log(this.reviews)
   }
 
 
+}
+
+interface Review {
+  nickname: string;
+  trip: string;
+  review: string;
+  date: string
 }

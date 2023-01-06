@@ -1,9 +1,42 @@
-<main>
-    <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
-        <label>Your nickname:</label><input name="nickname" formControlName="nickname">
-        <label>Trip: </label><input formControlName="trip">
-        <label>Place your review:</label><textarea type="time" name="review" formControlName="review"></textarea>
-        <label>Date of trip:</label> <input type="date" name="date" formControlName="date">
-        <button [disabled]="!modelForm.valid" type="submit">Add</button>
-    </form>
-</main>
+<section id="content">
+    
+    <div id="review">
+        <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+            <label>Your nickname:</label><input name="nickname" formControlName="nickname">
+            <label>Trip: </label><input formControlName="trip">
+            <label>Place your review:</label><textarea type="time" name="review" formControlName="review"></textarea>
+            <label>Date of trip:</label> <input type="date" name="date" formControlName="date">
+            <button [disabled]="!modelForm.valid" type="submit">Add</button>
+        </form>
+    </div>
+    <div id="reviews">
+        <div style="margin: 5vh">
+            {{reviews.length ? "Reviews about this trip" : "No reviews yet"}}
+        </div>
+        <section style="margin: 5vh 0" *ngFor="let review of reviews">
+            <b> {{review.nickname | uppercase }} </b> <br>
+            <b> {{review.trip}} </b>
+            <div> {{review.review}} </div>
+            <div> {{review.date}} </div>
+        </section>
+    </div>
+
+
+    
+    <div id="back">GO BACK</div>
+
+    
+    <ng-container *ngFor="let trip of wycieczka">
+        <section id="info">
+            <div id="name">{{trip.name}}</div>
+            <div id="country">{{trip.country}}</div>
+        </section>
+        <section id="description">
+            <div id="desc">{{trip.description}}</div>    
+            <div id="price">{{trip.price}}</div>
+        </section>
+        <img src="{{trip.image}}" alt="">
+        
+    </ng-container>
+
+</section>

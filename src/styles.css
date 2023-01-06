@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 body,p{
     margin: 0;
+    background-color: var(--lighterGrayColor);
 }
 
 :root{
     --grayColor: rgb(73, 73, 73);
-    --lighterGrayColor: rgb(100, 100, 100);
+    --lighterGrayColor: rgb(105, 105, 105);
 }

@@ -4,6 +4,9 @@ main{
     color: white;
     overflow: hidden;
 }
+p{
+    background-color: var(--grayColor);
+}
 
 footer{
     background-color: var(--grayColor);

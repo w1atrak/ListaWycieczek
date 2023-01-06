@@ -24,6 +24,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
 
   wycieczki: Wycieczka[] = [];
+
   reserved : number = 0
   maxPrice : number = 0
   minPrice : number = 10**10
@@ -34,62 +35,49 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
   
   
 
-
-  updatePrices(){
-    this.maxPrice = 0
-    this.minPrice = 10**10
-    this.wycieczki.forEach((wycieczka: any) => {
-      if(!wycieczka.removed){
-        this.maxPrice = Math.max(wycieczka.price, this.maxPrice)
-        this.minPrice = Math.min(wycieczka.price, this.minPrice) 
-      }
-    })
-  }
-
-  ngOnInit(): void {
-    console.log(this.dataService.getTrips(),"dane")
-    console.log("dane")
-
-    // fetch('../assets/wycieczki.json').then(res => res.json())
-    // .then(data => {
-    //   let wycieczki : Wycieczka[] = data
-    //   Object.keys(wycieczki).forEach((key : any) => {
-    //     wycieczki[key].reserved = 0
-    //     wycieczki[key].removed = false
-    //     wycieczki[key].hidden = false
-    //     this.wycieczki.push(wycieczki[key] as Wycieczka)
-
-    //     this.maxPrice = Math.max(wycieczki[key].price, this.maxPrice)
-    //     this.minPrice = Math.min(wycieczki[key].price, this.minPrice) 
-    //   })
-    // })
-
-
-    this.dataService.getTrips().subscribe(trips => {
-      this.wycieczki = []
-      for(let trip of trips){
-        this.wycieczki.push({
-          name: trip.name,
-          country: trip.country,
-          startDate: trip.startDate,
-          endDate: trip.endDate,
-          price: trip.price,
-          maxPeople: trip.maxPeople,
-          currency: trip.currency,
-          description: trip.description,
-          reviews: trip.reviews,
-          image: trip.image,
-          reserved: 0,
-          hidden: false,
-          removed: false
-        } as Wycieczka)
-      }
-    })
   
-  }
+  ngOnInit(): void {
+        
+        this.dataService.getTrips().subscribe(trips => {
+          this.wycieczki = []
+          for(let trip of trips){
+            this.wycieczki.push({
+              id: trip.id,
+              name: trip.name,
+              country: trip.country,
+              startDate: trip.startDate,
+              endDate: trip.endDate,
+              price: trip.price,
+              maxPeople: trip.maxPeople,
+              currency: trip.currency,
+              description: trip.description,
+              rating: trip.reviews,
+              image: trip.image,
+              reserved: 0,
+              hidden: false,
+            } as Wycieczka)
+          }
+        })
+        
+      }
 
-  addReservation(item: any){
-    item.reserved += 1
+
+
+      updatePrices(){
+        this.maxPrice = 0
+        this.minPrice = 10**10
+        this.wycieczki.forEach((wycieczka: any) => {
+          if(!wycieczka.removed){
+            this.maxPrice = Math.max(wycieczka.price, this.maxPrice)
+            this.minPrice = Math.min(wycieczka.price, this.minPrice) 
+          }
+        })
+      }
+
+
+      
+      addReservation(item: any){
+        item.reserved += 1
     item.maxPeople -= 1
     this.reserved += 1
   }
@@ -189,10 +177,10 @@ export class FilterPipe implements PipeTransform {
     }
     return wycieczki.filter((item: Wycieczka) => {
       var sum : number = 0
-    item.reviews.forEach((review: any) => {
+    item.rating.forEach((review: any) => {
       sum += parseInt(review,10)
     })
-    let rev = Math.floor(sum/item.reviews.length)
+    let rev = Math.floor(sum/item.rating.length)
 
       let result = filter[0].includes(item.country) && item.price >= filter[1][0] && item.price <= filter[1][1] && item.startDate >= filter[2][0] && item.endDate <= filter[2][1] && filter[3].includes(rev)
       item.hidden = !result
@@ -207,6 +195,7 @@ export class FilterPipe implements PipeTransform {
 
 
 export interface Wycieczka {
+  id: number;
   name: string;
   country: string;
   startDate: string;
@@ -217,8 +206,7 @@ export interface Wycieczka {
   description: string;
   image: string;
   reserved: number;
-  removed: boolean;
   hidden: boolean;
-  reviews: any[];
+  rating: any[];
 }
 
