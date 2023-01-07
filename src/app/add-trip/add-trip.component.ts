@@ -119,7 +119,9 @@ export class AddTripComponent implements OnInit {
       image: this.modelForm.value.image,
       reserved: 0,
       hidden: false,
-      rating: [] = []
+      rating: [] = [],
+      boughtTimes: 0,
+      status: null
 
     }
     wycieczka.rating.push([2])   /// domyślne

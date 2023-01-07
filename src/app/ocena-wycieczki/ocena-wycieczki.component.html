@@ -1,6 +1,7 @@
 <section id="content">
     
     <div id="review">
+        <b>Place your review</b>
         <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
             <label>Your nickname:</label><input name="nickname" formControlName="nickname">
             <label>Trip: </label><input formControlName="trip">
@@ -23,7 +24,7 @@
 
 
     
-    <div id="back">GO BACK</div>
+    <div id="back" routerLink="/trips">GO BACK</div>
 
     
     <ng-container *ngFor="let trip of wycieczka">

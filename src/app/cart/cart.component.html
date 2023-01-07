@@ -1,1 +1,19 @@
-<p>cart works!</p>
+
+<main>
+
+    <section *ngFor="let trip of this.cartService.trips">
+        
+        <div>{{trip.name | uppercase }}</div>
+        <div>{{trip.country}}</div>
+        
+        <div class="date">
+            <div>{{trip.startDate}} - {{trip.endDate}}</div>
+        </div>
+        <div>{{trip.price}}</div>
+
+        <div class="buttons">
+            <button (click)="onDelete(trip)">Delete</button>
+            <button (click)="onBuy(trip)">BUY</button>
+        </div>
+    </section>
+</main>

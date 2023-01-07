@@ -8,6 +8,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { OcenaWycieczkiComponent } from './ocena-wycieczki/ocena-wycieczki.component';
 import { FiltrowanieWycieczekComponent } from './filtrowanie-wycieczek/filtrowanie-wycieczek.component';
 import { FilterPipe } from './wycieczki/wycieczki.component';
+import { FilterStatusPipe } from './history/history.component';
 import { KoszykWycieczekComponent } from './koszyk-wycieczek/koszyk-wycieczek.component';
 
 import { AngularFireModule } from '@angular/fire/compat';
@@ -26,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     OcenaWycieczkiComponent,
     FiltrowanieWycieczekComponent,
     FilterPipe,
+    FilterStatusPipe,
     KoszykWycieczekComponent,
     HomeComponent,
     AddTripComponent,

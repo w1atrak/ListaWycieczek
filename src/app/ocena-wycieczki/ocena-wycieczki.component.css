@@ -1,7 +1,7 @@
 #content{
     color: white;
     width: 95%;
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
 
     display: grid;
     grid-template-columns: 3fr 1fr;

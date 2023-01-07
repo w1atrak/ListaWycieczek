@@ -1,1 +1,24 @@
-<p>history works!</p>
+<div>
+    <input checked type="checkbox"> Incoming
+    <input checked type="checkbox"> Active
+    <input checked type="checkbox"> Finished
+</div>
+
+<main>
+
+    <section *ngFor="let trip of ( this.cartService.boughtTrips | filterStatusPipe : statuses)">
+        
+        <div>{{trip.name | uppercase }}</div>
+        <div>{{trip.country}}</div>
+        
+        <div class="date">
+            <div>{{trip.startDate}} - {{trip.endDate}}</div>
+        </div>
+        <div>{{trip.price}}</div>
+        <hr>
+        <div>
+            Bought × {{trip.boughtTimes}} <br>
+            Status: {{trip.status}}
+        </div>
+    </section>
+</main>

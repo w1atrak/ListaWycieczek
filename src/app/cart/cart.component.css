@@ -1,0 +1,15 @@
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 80vw;
+    margin: 20px auto 0 auto;
+}
+
+section{
+    background-color: var(--grayColor);
+    color: white;
+    padding: 2%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}

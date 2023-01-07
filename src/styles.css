@@ -2,6 +2,7 @@
 body,p{
     margin: 0;
     background-color: var(--lighterGrayColor);
+    color: white;
 }
 
 :root{
