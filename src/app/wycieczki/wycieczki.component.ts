@@ -58,7 +58,8 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
           reserved: 0,
           hidden: false,
           boughtTimes: 0,
-          status: null
+          status: null,
+          boughtAt: ''
         } as Wycieczka)
       }
     })
@@ -216,6 +217,7 @@ export interface Wycieczka {
   hidden: boolean;
   rating: any[];
   boughtTimes: number;
+  boughtAt: string;
   status: any;
 }
 

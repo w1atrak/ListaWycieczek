@@ -23,6 +23,7 @@ export class CartComponent implements OnInit {
       this.cartService.boughtTrips.push(trip)
     }
     trip.boughtTimes += 1
+    trip.boughtAt = new Date().toLocaleString()
     this.onDelete(trip)
     console.log(this.cartService.boughtTrips)
   }
