@@ -20,6 +20,7 @@ import { AddTripComponent } from './add-trip/add-trip.component';
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TripReviewComponent } from './trip-review/trip-review.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AddTripComponent,
     CartComponent,
     HistoryComponent,
-    NavbarComponent
+    NavbarComponent,
+    TripReviewComponent
   ],
   imports: [
     CommonModule,
