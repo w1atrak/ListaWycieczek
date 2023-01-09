@@ -129,6 +129,8 @@ export class AddTripComponent implements OnInit {
 
     this.modelForm.reset()
 
+    this.dataService.addTrip(wycieczka)
+
     console.log(wycieczka)
   }
 

@@ -113,7 +113,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
     item.removed = true
     this.updatePrices()
     this.refresh()
-
+    this.dataService.removeTrip(item.id)
   }
 
   ocena(reviews: any[]) {
