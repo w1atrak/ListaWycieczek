@@ -1,8 +1,6 @@
 
-
-<div *ngIf="handleChanges()"></div>
 <div id="cart">
     W koszyku <br>
-    wycieczek: {{sumaWycieczek}} <br>
-    koszt: {{sumaKosztu | currency: 'USD'}} 
+    wycieczek: {{tripsNumber}} <br>
+    koszt: {{ sumTripsStats() | currency: 'USD'}} 
 </div>

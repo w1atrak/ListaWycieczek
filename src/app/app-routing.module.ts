@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { WycieczkiComponent } from './wycieczki/wycieczki.component';
-import { OcenaWycieczkiComponent } from './ocena-wycieczki/ocena-wycieczki.component';
+import { OcenaWycieczkiComponent } from './trip-details/ocena-wycieczki.component';
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
+import { CartService } from '../cart.service';
 @Component({
   selector: 'app-koszyk-wycieczek',
   templateUrl: './koszyk-wycieczek.component.html',
@@ -7,25 +8,26 @@ import { Wycieczka } from '../wycieczki/wycieczki.component';
 })
 export class KoszykWycieczekComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cartService: CartService ) { }
 
-  @Input() wycieczki: Wycieczka[] = [];
-  sumaWycieczek: number = 0;
-  sumaKosztu: number = 0;
+  trips: Wycieczka[] = [];
+  tripsNumber: number = 0;
+  tripsCost: number = 0;
 
   ngOnInit(): void {
-    console.log(this.wycieczki, "z koszykaa")
-    console.log()
+    this.trips = this.cartService.getCart();
   }
 
-  handleChanges() {
 
-    this.sumaKosztu = 0;
-    this.sumaWycieczek = 0;
-    this.wycieczki.forEach((wycieczka: Wycieczka) => {
-      this.sumaWycieczek += wycieczka.reserved;
-      this.sumaKosztu += wycieczka.reserved * wycieczka.price;
-    })
+  sumTripsStats() : number{
+    this.tripsCost = 0;
+    this.tripsNumber = 0;
+    for(let trip of this.trips){
+      this.tripsCost += trip.price * trip.reserved;
+      this.tripsNumber += trip.reserved;
+    }
+    return this.tripsCost;
   }
+
 
 }

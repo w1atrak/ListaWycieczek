@@ -120,11 +120,11 @@ p{
 }
 
 main{
-    background-color: burlywood
+    background-color: var(--grayColor)
 }
 
 #menu{
-    background-color: rgb(214, 158, 85);
+    background-color: var(--grayColor);
 }
 
 .border{

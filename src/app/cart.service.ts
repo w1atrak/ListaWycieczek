@@ -11,4 +11,8 @@ export class CartService {
   trips: Wycieczka[] = [];
   boughtTrips: Wycieczka[] = [];
 
+  getCart(): Wycieczka[] {
+    return this.trips;
+  }
+
 }

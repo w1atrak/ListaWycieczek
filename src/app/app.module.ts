@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { WycieczkiComponent } from './wycieczki/wycieczki.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { OcenaWycieczkiComponent } from './ocena-wycieczki/ocena-wycieczki.component';
+import { OcenaWycieczkiComponent } from './trip-details/ocena-wycieczki.component';
 import { FiltrowanieWycieczekComponent } from './filtrowanie-wycieczek/filtrowanie-wycieczek.component';
 import { FilterPipe } from './wycieczki/wycieczki.component';
 import { FilterStatusPipe } from './history/history.component';

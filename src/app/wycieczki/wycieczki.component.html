@@ -1,10 +1,10 @@
 <div id="cart">
-    <app-koszyk-wycieczek [wycieczki]="wycieczki" id="row"></app-koszyk-wycieczek>
+    <app-koszyk-wycieczek  id="row"></app-koszyk-wycieczek>
 </div>
 
 <div id="menu">
 
-        <p [ngStyle]="{'background-color': reserved>=10 ? 'green' : 'red' }">Zarezerwowano: {{reserved}}</p>
+        <p [ngStyle]="{'background-color': reserved>=10 ? 'green' : 'red' }">Zarezerwowano: {{this.cartService.getCart().length}}</p>
 
 
     
@@ -12,7 +12,7 @@
 
 <div class="border">
 <b (click)="setAttributes()"> Filtruj</b>
-<app-filtrowanie-wycieczek *ngIf="showFilters" [(filterValues)]="attributes" ></app-filtrowanie-wycieczek>
+<app-filtrowanie-wycieczek *ngIf="showFiltersF()" [(filterValues)]="attributes" ></app-filtrowanie-wycieczek>
 </div>
 
 <br>
@@ -20,9 +20,9 @@
 
 </div>
 
+<div *ngIf="!this.wycieczki.length">nie ma</div>
 
 <main id="screen">
-    {{refresh()}}
     <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)">
 
         <ng-container *ngIf="!item.hidden">
@@ -66,6 +66,7 @@
                 -
                 <div>{{item.endDate | date}}</div>
             </div>
+            <div>{{ocena(item.reviews)}}</div>
                 
         </section>
 </ng-container>

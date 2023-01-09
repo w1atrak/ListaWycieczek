@@ -39,6 +39,7 @@ form{
 
 #back{
     grid-area: back;
+    width: fit-content;
 }
 #info{
     grid-area: name;

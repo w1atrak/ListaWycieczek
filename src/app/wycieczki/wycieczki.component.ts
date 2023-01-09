@@ -1,8 +1,5 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, Pipe, PipeTransform } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AbstractControl } from '@angular/forms';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { Observable } from '@firebase/util';
+import {  FormBuilder } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
 import { CartService } from '../cart.service';
 
@@ -17,8 +14,8 @@ import { CartService } from '../cart.service';
 
 export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
-  constructor(private formBuilder: FormBuilder, private dataService: DataServiceService, private ref: ChangeDetectorRef,
-    private cartService: CartService) {
+  constructor( private dataService: DataServiceService, private ref: ChangeDetectorRef,
+    public cartService: CartService) {
   }
 
 
@@ -35,11 +32,13 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
 
 
+  
+
 
 
 
   ngOnInit(): void {
-
+    
     this.dataService.getTrips().subscribe(trips => {
       this.wycieczki = []
       for (let trip of trips) {
@@ -59,20 +58,28 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
           hidden: false,
           boughtTimes: 0,
           status: null,
-          boughtAt: ''
+          boughtAt: '',
+          reviews: trip.reviews,
         } as Wycieczka)
       }
     })
+    
+    this.refresh()
 
   }
 
+
+  showFiltersF() {
+    this.refresh()
+    return this.showFilters
+  }
 
 
   updatePrices() {
     this.maxPrice = 0
     this.minPrice = 10 ** 10
     this.wycieczki.forEach((wycieczka: any) => {
-      if (!wycieczka.removed) {
+      if (!wycieczka.hidden) {
         this.maxPrice = Math.max(wycieczka.price, this.maxPrice)
         this.minPrice = Math.min(wycieczka.price, this.minPrice)
       }
@@ -86,6 +93,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
     item.maxPeople -= 1
     this.reserved += 1
     this.cartService.trips.push(item)
+    console.log(this.wycieczki,"eo")
   }
 
   removeReservation(item: any) {
@@ -123,9 +131,11 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
     let dataMax: any
     let ocenaMin: number = 6
     let ocenaMax: number = 0
+    let minPrice: number = 10 ** 10
+    let maxPrice: number = 0
 
     this.wycieczki.forEach((wycieczka: any) => {
-      if (!wycieczka.removed) {
+      if (true) {
         if (!lokalizacje.includes(wycieczka.country)) {
           lokalizacje.push(wycieczka.country)
         }
@@ -140,11 +150,15 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
           ocenaMax = Math.max(this.ocena(wycieczka.reviews), ocenaMax)
           ocenaMin = Math.min(this.ocena(wycieczka.reviews), ocenaMin)
         }
+        maxPrice = Math.max(wycieczka.price, maxPrice)
+        minPrice = Math.min(wycieczka.price, minPrice)
+        
       }
 
     })
+    this.updatePrices()
     this.attributes.push(lokalizacje)
-    this.attributes.push([this.minPrice, this.maxPrice])
+    this.attributes.push([minPrice, maxPrice])
     this.attributes.push([dataMin, dataMax])
     this.attributes.push([])
 
@@ -168,11 +182,9 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
   }
   ngAfterContentChecked() {
     this.ref.detectChanges();
-
   }
 
 }
-//TODO rozróżnić removed od hidden 
 
 @Pipe({
   name: 'filterPipe',
@@ -218,6 +230,7 @@ export interface Wycieczka {
   rating: any[];
   boughtTimes: number;
   boughtAt: string;
-  status: any;
+  status: any,
+  reviews: any[];
 }
 
