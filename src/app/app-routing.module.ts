@@ -7,15 +7,19 @@ import { OcenaWycieczkiComponent } from './trip-details/ocena-wycieczki.componen
 import { AddTripComponent } from './add-trip/add-trip.component';
 import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'trips', component: WycieczkiComponent},
   {path: 'trip/:id', component: OcenaWycieczkiComponent},
   {path: 'add-trip', component: AddTripComponent},
   {path: 'cart', component: CartComponent},
   {path: 'history', component: HistoryComponent},
+  {path: 'register', component: RegisterComponent},
   {path: '', redirectTo: '/home', pathMatch: 'full'}  
 ];
 

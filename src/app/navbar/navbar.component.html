@@ -6,12 +6,18 @@
         </span>
     </div>
     <div id="options" *ngIf="hamburgerMenu">
+
         <div  id="home" routerLink="/home">HOME</div>
-        <div  routerLink="/trips">Shop trips!</div>
-        <div  routerLink="/add-trip">Add trip</div>
-        <div  routerLink="cart">Your cart</div>
-        <div  routerLink="history">Your history</div>
-        <div  id="profile">!Incoming trip!</div>
-        <div  id="profile">Profile</div>
+        <div  routerLink="/trips" id="trips">Shop trips!</div>
+        <div *ngIf="this.authService.userData" routerLink="/add-trip" id="manager">Add trip</div>
+        <div *ngIf="this.authService.userData" routerLink="cart" id="cart">Your cart</div>
+        <div *ngIf="this.authService.userData" routerLink="history" id="history">Your history</div>
+        <div *ngIf="this.authService.userData" id="profile" id="notif">!Incoming trip!</div>
+
+        <div *ngIf="!this.authService.userData" routerLink="/login" id="login">Login</div>
+        <div *ngIf="!this.authService.userData" routerLink="/register" id="register">Register</div>
+        <div *ngIf="this.authService.userData" id="username">{{getUsername()}}</div>
+        <div *ngIf="this.authService.userData" (click)="logout()" id="logout">Logout</div>
+
     </div>
 </nav>

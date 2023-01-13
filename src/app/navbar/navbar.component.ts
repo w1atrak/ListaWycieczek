@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService : AuthService) { }
 
   hamburgerMenu: boolean = true;
   smallScreen: boolean = true;
@@ -33,6 +34,13 @@ export class NavbarComponent implements OnInit {
       this.changeHamburger();
     }
     this.smallScreen = event.target.innerWidth < 730;
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+  getUsername(){
+    return this.authService.getUser().email
   }
 
 }

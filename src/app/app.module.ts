@@ -21,6 +21,8 @@ import { CartComponent } from './cart/cart.component';
 import { HistoryComponent } from './history/history.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TripReviewComponent } from './trip-review/trip-review.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,9 @@ import { TripReviewComponent } from './trip-review/trip-review.component';
     CartComponent,
     HistoryComponent,
     NavbarComponent,
-    TripReviewComponent
+    TripReviewComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -44,10 +48,9 @@ import { TripReviewComponent } from './trip-review/trip-review.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserModule,
-    // AppRoutingModule,
     AngularFireDatabaseModule,
     AppRoutingModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -3,21 +3,54 @@ nav{
     color: white;
 }
 #options{
-    display: flex;
-    justify-content: center;
+    display: grid;
     font-size: large;
     font-weight: bolder;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "home admin manager trips cart history notif user register";
+    padding: 1%;
 }
 #options>div{
-    padding: 1%;
     text-align: center;
+}
+#home{
+    grid-area: home;
+}
+#manager{
+    grid-area: manager;
+}
+#admin{
+    grid-area: admin;
+}
+#trips{
+    grid-area: trips;
+}
+#cart{
+    grid-area: cart;
+}
+#history{
+    grid-area: history;
+}
+#notif{
+    grid-area: notif;
+}
+#login{
+    grid-area: user;
+}
+#register{
+    grid-area: register;
+}
+#username{
+    grid-area: user;
+    color: red;
+}
+#logout{
+    grid-area: register;
 }
 
 #profile{
     margin-left: auto;
-}
-#home{
-    margin-right: auto;
+    display: flex;
 }
 span{
     display: none;

@@ -1,0 +1,17 @@
+
+<section>
+    <h1>Create a new account</h1>
+    <form [formGroup]="loginForm">
+        <div class="form-group">
+            <label for="email">Email: </label>
+            <input type="email" class="form-control" id="email" formControlName="login">
+        </div>
+        <div class="form-group">
+            <label for="password">Password: </label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+        <button  (click)="SubmitUser()">Register</button>
+    </form>
+    <div *ngIf="showErrorMessage">Fill in correct data</div>
+</section>
+

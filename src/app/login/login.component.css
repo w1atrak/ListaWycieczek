@@ -1,0 +1,14 @@
+section{
+    margin: 100px auto 0 auto;
+    width: fit-content;
+    background-color: var(--grayColor);
+    padding: 50px;
+    border-radius: 10px;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 110%;
+}

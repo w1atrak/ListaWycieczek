@@ -123,7 +123,8 @@ export class AddTripComponent implements OnInit {
       boughtTimes: 0,
       status: null,
       boughtAt: '',
-      reviews: []
+      reviews: [],
+  
     }
     wycieczka.rating.push([2])   /// domyślne
 
