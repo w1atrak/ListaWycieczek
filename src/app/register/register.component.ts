@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
       this.showErrorMessage = true;
       return;
     }
-    console.log(this.loginForm.value)
     this.showErrorMessage = false;
     this.authService.createUser(this.loginForm.value.login, this.loginForm.value.password);
     this.loginForm.reset();

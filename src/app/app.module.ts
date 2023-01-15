@@ -23,6 +23,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TripReviewComponent } from './trip-review/trip-review.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     NavbarComponent,
     TripReviewComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdminPanelComponent
   ],
   imports: [
     CommonModule,
