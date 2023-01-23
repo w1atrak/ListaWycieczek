@@ -20,7 +20,7 @@
 
 </div>
 
-<div *ngIf="!this.wycieczki.length">nie ma</div>
+<div *ngIf="!this.wycieczki.length">nie ma jeszcze</div>
 
 <main id="screen">
     <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)">

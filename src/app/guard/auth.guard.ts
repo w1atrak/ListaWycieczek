@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { DataServiceService } from '../data-service.service';
 import { map } from 'rxjs/operators';
+import { UserTypes } from '../Interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -20,16 +21,29 @@ export class AuthGuard implements CanActivate {
       return this.authService.angularFireAuth.authState.pipe(map(state=>{
 
         if(state){
+          let type: UserTypes
+          this.authService.getUserType()
+            .then((res)=>{
+              type = res as UserTypes
+            }
+            )
+            .then(
+              ()=>{
+                if(path=='admin-panel' && !type.admin){
+                  return this.handleFalse()
+                }
+                return 
+              }
+            )
+            .catch((e)=>console.log(e.message))
 
-          if(path=='admin-panel'){
-            console.log(this.authService.userType)
-
-          }
+          
 
           return true;
         }
-
-        return this.handleFalse();
+        else{
+          return this.handleFalse();
+        }
       }))
 
 

@@ -1,1 +1,14 @@
-<p>admin-panel works!</p>
+
+<!-- TODO panel admina zarządzanie użytkownikami -->
+
+
+<section>
+    <h3>Persistance settings</h3>
+    <div>Current setting: {{this.authService.currentPersistance}}</div>
+
+    <button (click)="setPersistance('local')">Switch to LOCAL</button>
+    <button (click)="setPersistance('session')">Switch to SESSION</button>
+    <button (click)="setPersistance('none')">Switch to NONE</button>
+
+
+</section>

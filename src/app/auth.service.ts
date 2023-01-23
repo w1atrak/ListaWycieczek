@@ -16,22 +16,25 @@ export class AuthService {
     manager: false
   };
 
+  currentPersistance: string = 'local'
+
   constructor(public angularFireAuth: AngularFireAuth, private dataService: DataServiceService) { 
+    this.angularFireAuth.setPersistence(this.currentPersistance)
     this.angularFireAuth.authState.subscribe( async (state) => {
       if(state){
         this.userData = state;
-        const user = await this.dataService.getUser(state.uid);
+        const user = await this.dataService.getUserType(state.uid);
         this.userType = user as UserTypes;
-        console.log(user)
       }
       else{
         this.userData = null;
       }
+      console.log(this.userType)
     })
   }
 
   createUser(email: string, password: string) {
-    return this.angularFireAuth
+    this.angularFireAuth
     .createUserWithEmailAndPassword(email, password)
     .then( (userData) => {
       let user = new User(userData.user);
@@ -55,6 +58,11 @@ export class AuthService {
 
   getUser(){
     return this.userData;
+  }
+
+  async getUserType(){
+    let res = await this.dataService.getUserType(this.userData.uid)
+    return res
   }
 
   isLoggedIn(){

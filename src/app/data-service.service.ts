@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { first, firstValueFrom, Observable } from 'rxjs';
 import {  AngularFireDatabase } from '@angular/fire/compat/database';
-import { User } from './Interfaces/User';
+import { User, UserTypes } from './Interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -48,13 +48,8 @@ export class DataServiceService {
     });
   }
 
-  async getUser(id: any){
-    firstValueFrom(this.db.object('/users/'+id+'/type').valueChanges()).then((res: any) => {
-      console.log(res)
-    })
-
-
-    return firstValueFrom(this.db.object('/users/'+id).valueChanges());
+  async getUserType(id: any){
+    return firstValueFrom(this.db.object('/users/'+id+'/type').valueChanges());
   }
 
 }
