@@ -32,9 +32,6 @@
             [ngStyle]="{'background-color': getColor(item.reserved/(item.maxPeople+item.reserved)) } ">
             
             <div class="panel">
-                    <span (click)="remove(item)" class="material-symbols-outlined">
-                        delete
-                        </span>
                 <img routerLink="/trip/{{item.id}}" src="{{item.image}}" alt="image not found">
                 <div class="tooltip">
                     <span class="material-symbols-outlined">
@@ -46,8 +43,8 @@
                 </div>
             </div>
             
-            <div class="panel">
-                <div>{{item.name | uppercase}}</div>
+            <div class="countries">
+                <div>{{item.name  | uppercase}}</div> 
                 <div>{{item.country | uppercase}}</div>
             </div>
             

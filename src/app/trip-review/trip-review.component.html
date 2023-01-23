@@ -1,4 +1,4 @@
-<button *ngIf="!show" (click)="click()">Oceń wycieczkę!</button>
+<button [disabled]="this.authService.userType.banned" *ngIf="!show" (click)="click()">Oceń wycieczkę!</button>
 <select *ngIf="show" [(ngModel)]="review" (ngModelChange)="onChoose()">
     <option disabled selected ></option>
     <option >1</option>

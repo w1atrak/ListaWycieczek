@@ -9,16 +9,18 @@ import { DataServiceService } from './data-service.service';
 })
 export class AuthService {
   userData: any = null;
-  userType: UserTypes | undefined  = {
+  userType: UserTypes   = {
     guest: true,
     user: false,
     admin: false,
-    manager: false
+    manager: false,
+    banned: false
   };
 
   currentPersistance: string = 'local'
 
   constructor(public angularFireAuth: AngularFireAuth, private dataService: DataServiceService) { 
+    // place that setting in a database
     this.angularFireAuth.setPersistence(this.currentPersistance)
     this.angularFireAuth.authState.subscribe( async (state) => {
       if(state){
@@ -28,8 +30,14 @@ export class AuthService {
       }
       else{
         this.userData = null;
+        this.userType = {
+          guest: true,
+          admin: false,
+          manager: false,
+          banned: false,
+          user: false
+        }
       }
-      console.log(this.userType)
     })
   }
 
@@ -38,7 +46,6 @@ export class AuthService {
     .createUserWithEmailAndPassword(email, password)
     .then( (userData) => {
       let user = new User(userData.user);
-      console.log(user);
       this.dataService.addUser(user);
     })
     .catch( (error) => {
@@ -52,7 +59,13 @@ export class AuthService {
   }
 
   logout() {
-    console.log(this.userData)
+    this.userType = {
+      guest: true,
+      admin: false,
+      manager: false,
+      banned: false,
+      user: false
+    }
     this.angularFireAuth.signOut();
   }
 

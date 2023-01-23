@@ -3,6 +3,7 @@ export interface UserTypes{
     user: boolean;
     admin: boolean;
     manager: boolean;
+    banned: boolean;
 }
 
 export class User {
@@ -17,7 +18,8 @@ export class User {
             guest: true,
             user: true,
             admin: false,
-            manager: false
+            manager: false,
+            banned: false
         };
     }
 }

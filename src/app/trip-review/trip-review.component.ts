@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-trip-review',
@@ -12,7 +13,7 @@ export class TripReviewComponent implements OnInit {
 
   review: number = 0
   show = false
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

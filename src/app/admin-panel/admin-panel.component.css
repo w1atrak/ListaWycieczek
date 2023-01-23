@@ -1,0 +1,6 @@
+.userCard{
+    background-color: var(--grayColor);
+    width: max-content;
+    padding: 2%;
+    margin: 2%;
+}

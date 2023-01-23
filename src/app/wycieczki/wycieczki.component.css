@@ -100,7 +100,12 @@ img{
 
 .panel{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.countries{
+    display: flex;
+    justify-content: space-around;
 }
 
 

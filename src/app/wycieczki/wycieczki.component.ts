@@ -2,6 +2,7 @@ import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, Pipe, PipeTr
 import {  FormBuilder } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
 import { CartService } from '../cart.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-wycieczki',
@@ -15,7 +16,7 @@ import { CartService } from '../cart.service';
 export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
   constructor( private dataService: DataServiceService, private ref: ChangeDetectorRef,
-    public cartService: CartService) {
+    public cartService: CartService, public authService: AuthService) {
   }
 
 
@@ -59,7 +60,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
           boughtTimes: 0,
           status: null,
           boughtAt: '',
-          reviews: trip.reviews,
+          reviews: trip.reviews ? trip.reviews : [],
         } as Wycieczka)
       }
     })
@@ -107,14 +108,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
   }
 
 
-  remove(item: any) {
-    this.reserved -= item.reserved
-    item.hidden = true
-    item.removed = true
-    this.updatePrices()
-    this.refresh()
-    this.dataService.removeTrip(item.id)
-  }
+  
 
   ocena(reviews: any[]) {
     var sum: number = 0

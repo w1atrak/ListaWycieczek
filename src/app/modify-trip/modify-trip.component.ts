@@ -1,75 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { DataServiceService } from '../data-service.service';
 import { Wycieczka } from '../wycieczki/wycieczki.component';
 
-
 @Component({
-  selector: 'app-add-trip',
-  templateUrl: './add-trip.component.html',
-  styleUrls: ['./add-trip.component.css']
+  selector: 'app-modify-trip',
+  templateUrl: './modify-trip.component.html',
+  styleUrls: ['./modify-trip.component.css']
 })
-export class AddTripComponent implements OnInit {
+export class ModifyTripComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private dataService : DataServiceService) { }
 
-  trips: Wycieczka[] = []
+  @Input() trip: any
+
   ngOnInit(): void {
-    
-    this.dataService.getTrips().subscribe(trips=>{
-      this.trips = []
-      for (let trip of trips) {
-        this.trips.push({
-          id: trip.id,
-          name: trip.name,
-          country: trip.country,
-          startDate: trip.startDate,
-          endDate: trip.endDate,
-          price: trip.price,
-          maxPeople: trip.maxPeople,
-          currency: trip.currency,
-          description: trip.description,
-          rating: trip.reviews,
-          image: trip.image,
-          reserved: 0,
-          hidden: false,
-          boughtTimes: 0,
-          status: null,
-          boughtAt: '',
-          reviews: trip.reviews,
-        } as Wycieczka)
-      }
-    })
-
-
     this.modelForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      country: ['', [Validators.required, Validators.pattern('[A-Z][a-z]+')]],
-      startDate: ['', Validators.required],
-      endDate: ['', [Validators.required, this.validateDates]],
-      price: ['',  [Validators.pattern('[0-9]+'), Validators.required]],
-      currency: ['', [Validators.required, Validators.maxLength(5)]],
-      maxPeople: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-      description: ['', Validators.required],
-      image: ['', Validators.required]
+      name: [this.trip.name, Validators.required],
+      country: [this.trip.country, [Validators.required, Validators.pattern('[A-Z][a-z]+')]],
+      startDate: [this.trip.startDate, Validators.required],
+      endDate: [this.trip.endDate, [Validators.required, this.validateDates]],
+      price: [this.trip.price,  [Validators.pattern('[0-9]+'), Validators.required]],
+      maxPeople: [this.trip.maxPeople, [Validators.required, Validators.pattern('[0-9]+')]],
+      description: [this.trip.description, Validators.required],
+      image: [this.trip.image, Validators.required]
     })
     this.modelForm.valueChanges.subscribe(data => this.onControlValueChanged());
   }
 
-
   modelForm: FormGroup = new FormGroup({});
-  modifying: boolean = false
-  choosenTrip: any
 
-  remove(item: any) {
-    this.dataService.removeTrip(item.id)
+  clear(){
+    this.trip = null
   }
 
-  modify(trip: any){
-    this.choosenTrip = trip
-    this.modifying = true
-  }
+
+
 
 
 
@@ -84,20 +50,12 @@ export class AddTripComponent implements OnInit {
   
     return null;
   };
-
-
-
-
-
-
-
   formErrors: any = {
     name: '',
     country: '',
     startDate: '',
     endDate: '',
     price: '',
-    currency: '',
     maxPeople: '',
     description: '',
     image: ''
@@ -119,10 +77,6 @@ export class AddTripComponent implements OnInit {
     },
     price: {
       pattern: 'Price must be a number.'
-    },
-    currency: {
-      required: 'Currency is required.',
-      maxLength: 'Currency must be 5 characters long.'
     },
     maxPeople: {
       required: 'Max people is required.',
@@ -154,13 +108,13 @@ export class AddTripComponent implements OnInit {
 
   onSubmit(form:any) {
     let wycieczka : Wycieczka= {
-      id: this.dataService.getId(),
+      id: this.trip.id,
       name: this.modelForm.value.name,
       country: this.modelForm.value.country,
       startDate: this.modelForm.value.startDate,
       endDate: this.modelForm.value.endDate,
       price: this.modelForm.value.price,
-      currency: this.modelForm.value.currency,
+      currency: 'USD',
       maxPeople: this.modelForm.value.maxPeople,
       description: this.modelForm.value.description,
       image: this.modelForm.value.image,
@@ -176,11 +130,9 @@ export class AddTripComponent implements OnInit {
     wycieczka.rating.push([2])   /// domyślne
 
     this.modelForm.reset()
+    this.trip = null
 
-    this.dataService.addTrip(wycieczka)
+    this.dataService.updateTrip(wycieczka)
 
-    console.log(wycieczka)
   }
-
-
 }

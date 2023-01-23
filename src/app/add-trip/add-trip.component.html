@@ -1,17 +1,46 @@
 <div class="border">
-    <b  >Dodaj wycieczke</b>
-    <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
-        <label>name:</label><input name="name" formControlName="name">
-        <label>country:</label><input name="country" formControlName="country">
-        <label>starting date:</label><input type="date" name="startDate" formControlName="startDate">
-        <label>ending date:</label><input type="date" name="endDate" formControlName="endDate">
-        <label>price:</label><input name="price" formControlName="price">
-        <label>currency:</label><input name="currency" formControlName="currency">
-        <label>max number of people:</label><input name="maxPeople" formControlName="maxPeople">
-        <label>description:</label><input name="description" formControlName="description">
-        <label>image link:</label><input  name="image" formControlName="image">
-        <button [disabled]="!modelForm.valid" type="submit">Add</button>
-    </form>
+    <section>
+        <h3  >Add trip</h3>
+        <form  [formGroup]="modelForm" (ngSubmit)="onSubmit(modelForm)">
+            <label>name:</label><input name="name" formControlName="name">
+            <label>country:</label><input name="country" formControlName="country">
+            <label>starting date:</label><input type="date" name="startDate" formControlName="startDate">
+            <label>ending date:</label><input type="date" name="endDate" formControlName="endDate">
+            <label>price:</label><input name="price" formControlName="price">
+            <label>currency:</label><input name="currency" formControlName="currency">
+            <label>max number of people:</label><input name="maxPeople" formControlName="maxPeople">
+            <label>description:</label><input name="description" formControlName="description">
+            <label>image link:</label><input  name="image" formControlName="image">
+            <button [disabled]="!modelForm.valid" type="submit">Add</button>
+        </form>
+        
+        <div *ngFor="let error of formErrors | keyvalue">{{error.value}}</div>
+    </section>
 
-    <div *ngFor="let error of formErrors | keyvalue">{{error.value}}</div>
+
+    <section>
+        <h3>Modify trips</h3>
+
+        <app-modify-trip *ngIf="modifying" [trip]="choosenTrip"></app-modify-trip>
+
+            <div class="tripCard" *ngFor="let trip of trips">
+                <div>name: {{trip.name}}</div>
+                <div>country: {{trip.country}}</div>
+                <div>starting date: {{trip.startDate}}</div>
+                <div>ending date: {{trip.endDate}}</div>
+                <div>price: {{trip.price}}</div>
+                <div>max number of people: {{trip.maxPeople}}</div>
+                <div>description: {{trip.description}}</div>
+                <div>image link: {{trip.image}}</div> <br>
+
+                <div class="btns">
+                    <span (click)="remove(trip)" class="material-symbols-outlined">
+                        delete
+                    </span>
+                    <span (click)="modify(trip)" class="material-symbols-outlined">
+                        edit
+                    </span>
+                </div>
+            </div>
+    </section>
 </div>

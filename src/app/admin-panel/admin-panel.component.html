@@ -10,5 +10,14 @@
     <button (click)="setPersistance('session')">Switch to SESSION</button>
     <button (click)="setPersistance('none')">Switch to NONE</button>
 
+</section>
 
+<section>
+    <h3>Users</h3>
+    <div class="userCard" *ngFor="let user of users">
+        <div >Email: {{user.email}} </div>
+        <div>Admin: {{user.type.admin}} <button (click)="switchRole(user.id,'admin')">Switch</button></div>
+        <div>Manager: {{user.type.manager}} <button (click)="switchRole(user.id,'manager')">Switch</button></div>
+        <div>Banned: {{user.type.banned}} <button (click)="switchRole(user.id,'banned')">Switch</button></div>
+    </div>
 </section>

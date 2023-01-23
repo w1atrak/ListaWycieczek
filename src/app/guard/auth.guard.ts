@@ -29,10 +29,11 @@ export class AuthGuard implements CanActivate {
             )
             .then(
               ()=>{
-                if(path=='admin-panel' && !type.admin){
-                  return this.handleFalse()
-                }
-                return 
+                if(path=='admin-panel' && !type.admin) return this.handleFalse()
+                if(path=='add-trip' && !type.manager) return this.handleFalse()
+                if(path=='trip' && !type.user) return this.handleFalse()
+
+                return true
               }
             )
             .catch((e)=>console.log(e.message))

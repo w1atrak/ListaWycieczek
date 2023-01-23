@@ -1,4 +1,20 @@
 .border{
     background-color: var(--grayColor);
-    padding: 10%;
+    padding: 5%;
+}
+
+.tripCard{
+    margin: 2%;
+    background-color: var(--lighterGrayColor);
+    width: fit-content;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+input{
+    width: fit-content;
+}
+.btns{
+    display: flex;
+    justify-content: space-around;
 }
