@@ -125,12 +125,9 @@ p{
 }
 
 main{
-    background-color: var(--grayColor)
+    background-color: var(--lighterGrayColor)
 }
 
-#menu{
-    background-color: var(--grayColor);
-}
 
 .border{
     border: 3px solid red;
@@ -139,12 +136,7 @@ main{
     width: fit-content;
 }
 
-#row{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-}
+
 
 #cart{
     position: fixed;

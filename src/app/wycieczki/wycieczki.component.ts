@@ -219,12 +219,7 @@ export interface Wycieczka {
   maxPeople: number;
   description: string;
   image: string;
-  reserved: number;
   hidden: boolean;
-  rating: any[];
-  boughtTimes: number;
-  boughtAt: string;
-  status: any,
-  reviews: any[];
+  ratings: any[];
 }
 

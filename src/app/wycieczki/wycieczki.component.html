@@ -1,25 +1,19 @@
-<div id="cart">
-    <app-koszyk-wycieczek  id="row"></app-koszyk-wycieczek>
-</div>
 
-<div id="menu">
+
+<app-koszyk-wycieczek  id="cart"></app-koszyk-wycieczek>
 
 
 
-    
-<br>
 
 <div class="border">
-<b (click)="setAttributes()"> Filtruj</b>
-<app-filtrowanie-wycieczek *ngIf="showFiltersF()" [(filterValues)]="attributes" ></app-filtrowanie-wycieczek>
+    <span (click)="setAttributes()" class="material-symbols-outlined">
+        tune
+    </span> 
+    <app-filtrowanie-wycieczek *ngIf="showFiltersF()" [(filterValues)]="attributes" ></app-filtrowanie-wycieczek>
 </div>
 
-<br>
 
 
-</div>
-
-<div *ngIf="!this.wycieczki.length">nie ma jeszcze</div>
 
 <main id="screen">
     <ng-container *ngFor="let item of (getWycieczki() | filterPipe : attributes)">
