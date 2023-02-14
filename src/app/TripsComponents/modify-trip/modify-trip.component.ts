@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { DataServiceService } from '../data-service.service';
-import { Wycieczka } from '../wycieczki/wycieczki.component';
+import { DataServiceService } from '../../Services/data-service.service';
+import { Trip } from '../../Interfaces/Trip';
 
 @Component({
   selector: 'app-modify-trip',
@@ -107,7 +107,7 @@ export class ModifyTripComponent implements OnInit {
 
 
   onSubmit(form:any) {
-    let wycieczka : Wycieczka= {
+    let trip : Trip = {
       id: this.trip.id,
       name: this.modelForm.value.name,
       country: this.modelForm.value.country,
@@ -118,21 +118,15 @@ export class ModifyTripComponent implements OnInit {
       maxPeople: this.modelForm.value.maxPeople,
       description: this.modelForm.value.description,
       image: this.modelForm.value.image,
-      reserved: 0,
       hidden: false,
-      rating: [] = [],
-      boughtTimes: 0,
-      status: null,
-      boughtAt: '',
-      reviews: [],
-  
+      ratings: [] = [],  
     }
-    wycieczka.rating.push([2])   /// domyślne
+    trip.ratings.push([2])   /// domyślne
 
     this.modelForm.reset()
     this.trip = null
 
-    this.dataService.updateTrip(wycieczka)
+    this.dataService.updateTrip(trip)
 
   }
 }

@@ -21,8 +21,7 @@
         <ng-container *ngIf="!item.hidden">
             
             <section class="card" 
-            [ngClass]="{'expensive': item.price==minPrice , 'cheap' : item.price==maxPrice}"
-            [ngStyle]="{'background-color': getColor(item.reserved/(item.maxPeople+item.reserved)) } ">
+            [ngClass]="{'expensive': item.price==minPrice , 'cheap' : item.price==maxPrice}">
             
             <div class="panel">
                 <img routerLink="/trip/{{item.id}}" src="{{item.image}}" alt="image not found">
@@ -46,9 +45,11 @@
                 <div *ngIf="item.maxPeople!=0" [ngClass]="{'blink' : item.maxPeople<=3}">{{item.maxPeople}}</div>
                 <div *ngIf="item.maxPeople==0">Brak miejsc</div>
                 <div class="buttons">
-                    <button (click)="addReservation(item)" [ngStyle]="{'display' : item.maxPeople+item.reserved==item.reserved ? 'none' : 'block'}" >+</button>
+                    <button (click)="addReservation(item)">+</button> 
+                     <!-- [ngStyle]="{'display' : item.maxPeople+item.reserved==item.reserved ? 'none' : 'block'}" >+</button> -->
                     
-                    <button (click)="removeReservation(item)" [disabled]="item.reserved==0 ? true : false"  >-</button>
+                    <button (click)="removeReservation(item)" >-</button>
+                     <!-- [disabled]="item.reserved==0 ? true : false"  >-</button> -->
                 </div>
             </div>
             <div id="info">
@@ -57,8 +58,8 @@
                 <div>{{item.endDate | date}}</div>
             </div>
         
-            <div>{{ocena(item.reviews)}}</div>
-            <app-trip-review [(reviews)]="item.reviews"></app-trip-review>
+            <!-- <div>{{ocena(item.reviews)}}</div>
+            <app-trip-review [(reviews)]="item.reviews"></app-trip-review> -->
                 
         </section>
 </ng-container>

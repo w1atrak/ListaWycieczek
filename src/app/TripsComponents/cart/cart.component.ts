@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
-import { Wycieczka } from '../wycieczki/wycieczki.component';
+import { CartService } from '../../Services/cart.service';
+import { Trip } from '../../Interfaces/Trip';
 
 @Component({
   selector: 'app-cart',
@@ -17,18 +17,18 @@ export class CartComponent implements OnInit {
   }
 
 
-  onBuy(trip : Wycieczka){
-    trip.status = "Incoming"
+  onBuy(trip : Trip){
+    // trip.status = "Incoming"
     if(!this.cartService.boughtTrips.includes(trip)){
       this.cartService.boughtTrips.push(trip)
     }
-    trip.boughtTimes += 1
-    trip.boughtAt = new Date().toLocaleString()
+    // trip.boughtTimes += 1
+    // trip.boughtAt = new Date().toLocaleString()
     this.onDelete(trip)
     console.log(this.cartService.boughtTrips)
   }
 
-  onDelete(trip : Wycieczka){
+  onDelete(trip : Trip){
     for(let i = 0; i < this.cartService.trips.length; i++){
       if(this.cartService.trips[i].id == trip.id){
         

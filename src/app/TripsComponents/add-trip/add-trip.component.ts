@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { DataServiceService } from '../data-service.service';
-import { Wycieczka } from '../wycieczki/wycieczki.component';
-
+import { DataServiceService } from '../../Services/data-service.service';
+import { Trip } from '../../Interfaces/Trip';
 
 @Component({
   selector: 'app-add-trip',
@@ -14,7 +13,7 @@ export class AddTripComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private dataService : DataServiceService) { }
 
-  trips: Wycieczka[] = []
+  trips: Trip[] = []
   ngOnInit(): void {
     
     this.dataService.getTrips().subscribe(trips=>{
@@ -30,15 +29,10 @@ export class AddTripComponent implements OnInit {
           maxPeople: trip.maxPeople,
           currency: trip.currency,
           description: trip.description,
-          rating: trip.reviews,
+          ratings: trip.ratings,
           image: trip.image,
-          reserved: 0,
           hidden: false,
-          boughtTimes: 0,
-          status: null,
-          boughtAt: '',
-          reviews: trip.reviews,
-        } as Wycieczka)
+        } as Trip)
       }
     })
 
@@ -153,7 +147,7 @@ export class AddTripComponent implements OnInit {
 
 
   onSubmit(form:any) {
-    let wycieczka : Wycieczka= {
+    let wycieczka : Trip= {
       id: this.dataService.getId(),
       name: this.modelForm.value.name,
       country: this.modelForm.value.country,
@@ -164,22 +158,17 @@ export class AddTripComponent implements OnInit {
       maxPeople: this.modelForm.value.maxPeople,
       description: this.modelForm.value.description,
       image: this.modelForm.value.image,
-      reserved: 0,
       hidden: false,
-      rating: [] = [],
-      boughtTimes: 0,
-      status: null,
-      boughtAt: '',
-      reviews: [],
+      ratings: [] = [],
   
     }
-    wycieczka.rating.push([2])   /// domyślne
+    wycieczka.ratings.push([2])   /// domyślne
 
     this.modelForm.reset()
 
     this.dataService.addTrip(wycieczka)
 
-    console.log(wycieczka)
+    
   }
 
 

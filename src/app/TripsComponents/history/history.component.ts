@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../cart.service';
-import { Wycieczka } from '../wycieczki/wycieczki.component';
+import { CartService } from '../../Services/cart.service';
+import { Trip } from '../../Interfaces/Trip';
 import { PipeTransform, Pipe } from '@angular/core';
 
 @Component({
@@ -34,10 +34,10 @@ export class HistoryComponent implements OnInit {
       const startDate = new Date(trip.startDate)
       const endDate = new Date(trip.endDate)
       if(startDate <= now && endDate >= now){
-        trip.status = "Active"
+        //trip.status = "Active"
       }
       else if(endDate < now){
-        trip.status = "Finished"
+        //trip.status = "Finished"
       }
 
     })
@@ -51,9 +51,9 @@ export class HistoryComponent implements OnInit {
   pure: false
 })
 export class FilterStatusPipe implements PipeTransform {
-  transform(trips: Wycieczka[], filter: any): Wycieczka[] {
+  transform(trips: Trip[], filter: any): Trip[] {
     return trips.filter(trip => {
-      return filter.includes(trip.status)
+      // return filter.includes(trip.status)
     })
   }
 }

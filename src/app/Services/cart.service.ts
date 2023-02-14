@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Wycieczka } from './wycieczki/wycieczki.component';
+import { Trip } from '../Interfaces/Trip';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +8,10 @@ export class CartService {
 
   constructor() { }
 
-  trips: Wycieczka[] = [];
-  boughtTrips: Wycieczka[] = [];
+  trips: Trip[] = [];
+  boughtTrips: Trip[] = [];
 
-  getCart(): Wycieczka[] {
+  getCart(): Trip[] {
     return this.trips;
   }
 

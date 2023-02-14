@@ -1,8 +1,8 @@
 import { Component, OnInit,  } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { DataServiceService } from '../data-service.service';
-import { Wycieczka } from '../wycieczki/wycieczki.component';
+import { DataServiceService } from '../../Services/data-service.service';
+import { Trip } from '../../Interfaces/Trip';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class OcenaWycieczkiComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder,    private route: ActivatedRoute, private dataService: DataServiceService) { }
 
-  wycieczka: Wycieczka[] = [];
+  trips: Trip[] = [];
   reviews : any[] = [];
   id: number = 0;
 
@@ -34,7 +34,7 @@ export class OcenaWycieczkiComponent implements OnInit {
       this.dataService.getTrips().subscribe(data => {
         for(let wycieczka of data){
           if(wycieczka.id == this.id){
-            this.wycieczka.push({
+            this.trips.push({
               id: wycieczka.id,
               name: wycieczka.name,
               country: wycieczka.country,
@@ -44,11 +44,10 @@ export class OcenaWycieczkiComponent implements OnInit {
               maxPeople: wycieczka.maxPeople,
               currency: wycieczka.currency,
               description: wycieczka.description,
-              rating: wycieczka.reviews,
+              ratings: wycieczka.ratings,
               image: wycieczka.image,
-              reserved: 0,
               hidden: false,
-            } as Wycieczka)
+            } as Trip)
           }
 
         }

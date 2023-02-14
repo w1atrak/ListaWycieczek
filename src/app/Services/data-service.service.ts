@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { first, firstValueFrom, Observable } from 'rxjs';
 import {  AngularFireDatabase } from '@angular/fire/compat/database';
-import { User, UserTypes } from './Interfaces/User';
-import { Wycieczka } from './wycieczki/wycieczki.component';
+import { User, UserTypes } from '../Interfaces/User';
+import { Trip } from '../Interfaces/Trip';
 
 @Injectable({
   providedIn: 'root'
@@ -61,7 +61,7 @@ export class DataServiceService {
     return this.users
   }
 
-  updateTrip(trip: Wycieczka){
+  updateTrip(trip: Trip){
     this.db.list('wycieczki').snapshotChanges().pipe(first()).subscribe((trips: any)=>{
       for(let t of trips){
         if(t.payload.val().id==trip.id){

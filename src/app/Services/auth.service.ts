@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
-import { User, UserTypes } from './Interfaces/User';
+import { User, UserTypes } from '../Interfaces/User';
 import { DataServiceService } from './data-service.service';
 
 @Injectable({
