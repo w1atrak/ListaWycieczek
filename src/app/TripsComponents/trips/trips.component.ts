@@ -7,8 +7,8 @@ import { Trip } from '../../Interfaces/Trip';
 
 @Component({
   selector: 'app-wycieczki',
-  templateUrl: './wycieczki.component.html',
-  styleUrls: ['./wycieczki.component.css']
+  templateUrl: './trips.component.html',
+  styleUrls: ['./trips.component.css']
 })
 
 
@@ -41,7 +41,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
   ngOnInit(): void {
     
-    this.dataService.getTrips().subscribe(trips => {
+    this.dataService.wycieczki.subscribe(trips => {
       this.trips = []
       for (let trip of trips) {
         this.trips.push({
@@ -61,7 +61,7 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
       }
     })
     
-    this.refresh()  // :()
+     this.refresh()  // :()
 
   }
 
@@ -85,17 +85,12 @@ export class WycieczkiComponent implements OnInit, AfterContentChecked {
 
 
 
-  addReservation(item: any) {
-    item.reserved += 1
-    item.maxPeople -= 1
-    this.reserved += 1
-    this.cartService.trips.push(item)
+  addReservation(item: Trip) {
+    this.cartService.addReservation(item)
   }
 
   removeReservation(item: any) {
-    item.reserved -= 1
-    item.maxPeople += 1
-    this.reserved -= 1
+    this.cartService.removeReservation(item)
   }
 
   getColor(index: number) {

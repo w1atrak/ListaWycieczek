@@ -3,11 +3,11 @@ import {FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { WycieczkiComponent } from './TripsComponents/wycieczki/wycieczki.component';
+import { WycieczkiComponent } from './TripsComponents/trips/trips.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { OcenaWycieczkiComponent } from './TripsComponents/trip-details/ocena-wycieczki.component';
 import { FiltrowanieWycieczekComponent } from './TripsComponents/filtrowanie-wycieczek/filtrowanie-wycieczek.component';
-import { FilterPipe } from './TripsComponents/wycieczki/wycieczki.component';
+import { FilterPipe } from './TripsComponents/trips/trips.component';
 import { FilterStatusPipe } from './TripsComponents/history/history.component';
 import { KoszykWycieczekComponent } from './TripsComponents/koszyk-wycieczek/koszyk-wycieczek.component';
 

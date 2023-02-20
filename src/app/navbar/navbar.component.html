@@ -14,7 +14,6 @@
         <div *ngIf="this.authService.userType.manager" routerLink="/add-trip" id="manager">Add trip</div>
         <div *ngIf="this.authService.userData" routerLink="cart" id="cart">Your cart</div>
         <div *ngIf="this.authService.userData" routerLink="history" id="history">Your history</div>
-        <div *ngIf="this.authService.userData" id="profile" id="notif">!Incoming trip!</div>
 
         <div *ngIf="!this.authService.userData" routerLink="/login" id="login">Login</div>
         <div *ngIf="!this.authService.userData" routerLink="/register" id="register">Register</div>

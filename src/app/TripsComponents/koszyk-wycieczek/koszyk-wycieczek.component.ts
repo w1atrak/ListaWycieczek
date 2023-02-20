@@ -15,17 +15,17 @@ export class KoszykWycieczekComponent implements OnInit {
   tripsCost: number = 0;
 
   ngOnInit(): void {
-    this.trips = this.cartService.getCart();
+    // this.trips = this.cartService.getCart();
   }
 
 
   sumTripsStats() : number{
     this.tripsCost = 0;
     this.tripsNumber = 0;
-    for(let trip of this.trips){
-      // this.tripsCost += trip.price * trip.reserved;
-      // this.tripsNumber += trip.reserved;
-    }
+    // for(let trip of this.trips){
+    //   // this.tripsCost += trip.price * trip.reserved;
+    //   // this.tripsNumber += trip.reserved;
+    // }
     return this.tripsCost;
   }
 

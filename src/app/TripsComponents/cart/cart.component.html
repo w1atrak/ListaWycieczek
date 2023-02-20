@@ -1,19 +1,23 @@
 
 <main>
 
-    <section *ngFor="let trip of this.cartService.trips">
+    <section *ngFor="let trip of tripsReserved">
         
-        <div>{{trip.name | uppercase }}</div>
+        <div>{{trip.name | uppercase}}</div>
         <div>{{trip.country}}</div>
         
         <div class="date">
             <div>{{trip.startDate}} - {{trip.endDate}}</div>
         </div>
         <div>{{trip.price}}</div>
+        <hr>
+        Slots reserved: {{trip.quantity}}
+        <hr>
 
         <div class="buttons">
             <button (click)="onDelete(trip)">Delete</button>
-            <button (click)="onBuy(trip)">BUY</button>
+            <button (click)="reserveTrip(trip)">BUY</button>
         </div>
     </section>
 </main>
+<div (click)="test()">eo</div>

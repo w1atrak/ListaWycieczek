@@ -8,33 +8,33 @@ import { Trip } from '../../Interfaces/Trip';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
-  constructor(public cartService : CartService) { }
-
-  tripsReserved : any[] = []
-
-  ngOnInit(): void {
+  
+  
+  constructor(public cartService : CartService) {
+    
   }
+  
+  ngOnInit(): void {
+    this.cartService.tripsReserved.subscribe((trips: any) =>{
+      console.log("tripsss",trips)
+      this.tripsReserved = trips
+    })
+  }
+    
+    tripsReserved: any[] = [] 
 
 
-  onBuy(trip : Trip){
-    // trip.status = "Incoming"
-    if(!this.cartService.boughtTrips.includes(trip)){
-      this.cartService.boughtTrips.push(trip)
-    }
-    // trip.boughtTimes += 1
-    // trip.boughtAt = new Date().toLocaleString()
-    this.onDelete(trip)
-    console.log(this.cartService.boughtTrips)
+
+  reserveTrip(trip : any){
+    this.cartService.addReservation(trip)
   }
 
   onDelete(trip : Trip){
-    for(let i = 0; i < this.cartService.trips.length; i++){
-      if(this.cartService.trips[i].id == trip.id){
-        
-        this.cartService.trips.splice(i,1)
-      }
-    }
+    this.cartService.removeReservation(trip)
   }
 
+
+    test(){
+      console.log(this.tripsReserved)
+    }
 }

@@ -48,7 +48,9 @@ export class DataServiceService {
     this.db.object('users/'+user.id).set({
       email: user.email,
       type : user.type,
-      id: user.id
+      id: user.id,
+      reservedTrips: [],
+      boughtTrips: []
     });
   }
 

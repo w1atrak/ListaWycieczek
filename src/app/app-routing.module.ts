@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { WycieczkiComponent } from './TripsComponents/wycieczki/wycieczki.component';
+import { WycieczkiComponent } from './TripsComponents/trips/trips.component';
 import { OcenaWycieczkiComponent } from './TripsComponents/trip-details/ocena-wycieczki.component';
 import { AddTripComponent } from './TripsComponents/add-trip/add-trip.component';
 import { CartComponent } from './TripsComponents/cart/cart.component';
