@@ -15,13 +15,12 @@ export class CartComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.cartService.tripsReserved.subscribe((trips: any) =>{
-      console.log("tripsss",trips)
+    this.cartService.tripsReserved.subscribe(trips =>{
       this.tripsReserved = trips
     })
   }
     
-    tripsReserved: any[] = [] 
+  tripsReserved: any[] = [] 
 
 
 
@@ -34,7 +33,5 @@ export class CartComponent implements OnInit {
   }
 
 
-    test(){
-      console.log(this.tripsReserved)
-    }
+   
 }

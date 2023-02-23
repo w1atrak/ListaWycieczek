@@ -15,8 +15,10 @@ export class DataServiceService {
 
 
   constructor(public db : AngularFireDatabase) { 
-    this.wycieczki = this.db.list('wycieczki').valueChanges();
-    this.db.list('wycieczki', ref=> ref.orderByChild('id').limitToLast(1)).valueChanges().subscribe((res: any[]) => {this.nextId = res[0]?.id+1})    
+    this.wycieczki = this.db.list('wycieczki').valueChanges() as Observable<any[]>
+    
+    this.db.list('wycieczki', ref=> ref.orderByChild('id').limitToLast(1)).valueChanges()
+    .subscribe((res: any[]) => {this.nextId = res[0]?.id+1})    
 
     this.users = this.db.list('users').valueChanges();
   }

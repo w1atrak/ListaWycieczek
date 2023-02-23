@@ -43,9 +43,9 @@
             <div id="reservation">
                 <b>{{item.price | currency: item.currency }}</b>
                 <div *ngIf="item.maxPeople!=0" [ngClass]="{'blink' : item.maxPeople<=3}">{{item.maxPeople}}</div>
-                <div *ngIf="item.maxPeople==0">Brak miejsc</div>
+                <div *ngIf="item.maxPeople==0">Sold out!</div>
                 <div class="buttons">
-                    <button (click)="addReservation(item)">+</button> 
+                    <button [disabled]="!item.maxPeople" (click)="addReservation(item)">+</button> 
                      <!-- [ngStyle]="{'display' : item.maxPeople+item.reserved==item.reserved ? 'none' : 'block'}" >+</button> -->
                     
                     <button (click)="removeReservation(item)" >-</button>
